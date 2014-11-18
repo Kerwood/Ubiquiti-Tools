@@ -7,6 +7,8 @@ What the script does, is fairly simple. It ping sweeps the LAN and checks the ar
 
 To make the SSH connection, you must specify the login credentials in the script. For AP's, it is specifyed site login. You will find it in "Settings -> Site" at the bottom, "Device Password". Put your curser in the password field to reveal it. And for other non-controlled devices, like the NanBeam, it is login to the actual device.
 
+My experience is that the ping sweep works better, if the computer you are using, is cabled to the network, instead of using WiFi.
+
 ### Requirements
  - Linux OS
  - Python 2.7.*
