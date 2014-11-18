@@ -10,6 +10,7 @@ To make the SSH connection, you must specify the login credentials in the script
 ### Requirements
  - Linux OS
  - Python 2.7.*
+ - Paramiko (Python module)
  - Nmap
 
 ### Supported devices
