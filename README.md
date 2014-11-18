@@ -12,7 +12,7 @@ My experience is that the ping sweep works better, if the computer you are using
 ### Requirements
  - Linux OS
  - Python 2.7.*
- - Paramiko (Python module)
+ - Paramiko (Python module - Easy install with pip)
  - Nmap
 
 ### Supported devices
