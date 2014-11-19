@@ -5,7 +5,7 @@ This is a Python script i wrote to discover Ubiquiti products. Since I've only b
 
 What the script does, is fairly simple. It ping sweeps the LAN and checks the arp table for matching MAC addresses. It then trys to make a SSH connection to get the device model name, firmware version and controller inform address if any.
 
-To make the SSH connection, you must specify the login credentials in the script. For AP's, it is specifyed site login. You will find it in "Settings -> Site" at the bottom, "Device Password". Put your curser in the password field to reveal it. And for other non-controlled devices, like the NanBeam, it is login to the actual device.
+To make the SSH connection, you must specify the login credentials in the script. For AP's, it is the specifyed site login. You will find it in "Settings -> Site" at the bottom, "Device Password". Put your curser in the password field to reveal it. And for other non-controlled devices, like the NanBeam, it is login to the actual device.
 
 My experience is that the ping sweep works better, if the computer you are using, is cabled to the network, instead of using WiFi.
 
