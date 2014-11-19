@@ -46,7 +46,7 @@ IP               MAC                Model            Version      Status
 10.0.0.215       24:a4:3c:94:4c:7d  UAP-Outdoor+     3.2.1.2601   Connected (http://10.0.0.130:8080/inform)    
 
 
-Other Ubiquiti Accessories
+Other Ubiquiti Devices
 
 IP               MAC                Model            Version      Inform URL                                   
 10.0.0.15        04:18:d6:61:38:b9  NanoBeamM5       XW.v5.5.10                                                
