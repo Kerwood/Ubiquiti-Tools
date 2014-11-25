@@ -9,7 +9,6 @@
 #     - Patrick Kerwood @ LinuxBloggen.dk
 # -------------------------------------------------------------------------------
 
-
 import paramiko
 import subprocess
 import argparse
@@ -44,7 +43,7 @@ def print_ubnt():
     
     for line in splitted:
         
-        if "24:a4:3c" in line:           
+        if "24:a4:3c" in line or "04:18:d6" in line:           
             ip = re.search(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', line, re.I).group()
             mac = re.search(r'([0-9A-F]{2}[:-]){5}([0-9A-F]{2})', line, re.I).group()
             model = ""
@@ -58,15 +57,23 @@ def print_ubnt():
                 client.connect(ip, username=sshname, password=sshpass, allow_agent=False)
                 stdin, stdout, stderr = client.exec_command('mca-cli <<EOF\ninfo\nquit\nEOF')
                 
-                for line in stdout:
-                    
-                    if "Model" in line:
-                        model = line.rsplit(None, 1)[-1]
-                    elif "Version" in line:
-                        version = line.rsplit(None, 1)[-1]
-                    elif "Status" in line:
+                if stdout.channel.recv_exit_status() == 0:
+                    for line in stdout:
                         
-                        status = line.rsplit(None, 2)[-2] + " " + line.rsplit(None, 1)[-1]
+                        if "Model" in line:
+                            model = line.rsplit(None, 1)[-1]
+                        elif "Version" in line:
+                            version = line.rsplit(None, 1)[-1]
+                        elif "Status" in line or "Inform" in line:                        
+                            status = line.rsplit(None, 2)[-2] + " " + line.rsplit(None, 1)[-1]
+                else:
+                    stdin, stdout, stderr = client.exec_command('uname -a')
+                    for line in stdout:
+                        model = line.split(None, 2)[1]
+                    
+                    stdin, stdout, stderr = client.exec_command('cat /etc/version')                   
+                    for line in stdout:
+                        version = line.strip('\n')
                     
                 client.close()
             except paramiko.AuthenticationException:
@@ -75,55 +82,6 @@ def print_ubnt():
                 status = "Error trying to connect!"
                                 
             print(str(FORMAT % (ip, mac, model, version, status)))
-    
-    print
-    print
-    print "Other Ubiquiti Devices"
-    print
-    print(FORMAT % ('IP', 'MAC', 'Model', 'Version', 'Inform URL'))
-    
-    for line in splitted:
-        
-        if "04:18:d6" in line:           
-            ip = re.search(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', line, re.I).group()
-            mac = re.search(r'([0-9A-F]{2}[:-]){5}([0-9A-F]{2})', line, re.I).group()
-            model = ""
-            version = ""
-            inform = ""
-            
-            try:
-                client = paramiko.SSHClient()
-                client.load_system_host_keys()
-                client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-                client.connect(ip, username=sshname, password=sshpass, allow_agent=False)
-                stdin, stdout, stderr = client.exec_command('mca-cli <<EOF\ninfo\nquit\nEOF')
-                 
-                 
-                if stdout.channel.recv_exit_status() == 0:
-                    for line in stdout:
-                        
-                        if "Model" in line:
-                            model = line.rsplit(None, 1)[-1]
-                        elif "Version" in line:
-                            version = line.rsplit(None, 1)[-1]
-                        elif "Inform" in line:
-                            
-                            inform = line.rsplit(None, 1)[-1]
-                else:
-                    stdin, stdout, stderr = client.exec_command('uname -a')
-                    for line in stdout:
-                        model = line.split(None, 2)[1]
-                        
-                    stdin, stdout, stderr = client.exec_command('cat /etc/version')                   
-                    for line in stdout:
-                        version = line.strip('\n')
-
-                    
-                client.close()
-            except:
-                inform = "Could not connect to device!.."
-                                
-            print(str(FORMAT % (ip, mac, model, version, inform)))
         
 
 parser = argparse.ArgumentParser()
