@@ -41,8 +41,7 @@ def print_ubnt():
     FORMAT = '%-16s %-18s %-16s %-12s %-45s'
     print(FORMAT % ('IP', 'MAC', 'Model', 'Version', 'Status'))
     
-    for line in splitted:
-        
+    for line in splitted:  
         if "24:a4:3c" in line or "04:18:d6" in line:           
             ip = re.search(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', line, re.I).group()
             mac = re.search(r'([0-9A-F]{2}[:-]){5}([0-9A-F]{2})', line, re.I).group()
@@ -58,8 +57,7 @@ def print_ubnt():
                 stdin, stdout, stderr = client.exec_command('mca-cli <<EOF\ninfo\nquit\nEOF')
                 
                 if stdout.channel.recv_exit_status() == 0:
-                    for line in stdout:
-                        
+                    for line in stdout:   
                         if "Model" in line:
                             model = line.rsplit(None, 1)[-1]
                         elif "Version" in line:
@@ -92,5 +90,4 @@ if args.network:
     ping_sweep(args.network)
 
 print_ubnt()
-
 print
