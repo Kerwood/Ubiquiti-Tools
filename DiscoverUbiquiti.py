@@ -15,7 +15,7 @@ import argparse
 import re
 
 sshname = "admin"
-sshpass = "passw0rd"
+sshpass = "***REMOVED***"
 
 def ping_sweep(network):
     print
@@ -38,8 +38,8 @@ def print_ubnt():
     splitted = []
     splitted = arp.split("\n")
     
-    FORMAT = '%-16s %-18s %-16s %-12s %-45s'
-    print(FORMAT % ('IP', 'MAC', 'Model', 'Version', 'Status'))
+    FORMAT = '%-16s %-18s %-16s %-18s %-12s %-45s'
+    print(FORMAT % ('IP', 'MAC', 'Model', 'Hostname', 'Version', 'Status'))
     
     for line in splitted:  
         if "24:a4:3c" in line or "04:18:d6" in line:           
@@ -47,6 +47,7 @@ def print_ubnt():
             mac = re.search(r'([0-9A-F]{2}[:-]){5}([0-9A-F]{2})', line, re.I).group()
             model = ""
             version = ""
+            hostname = ""
             status = ""
             
             try:
@@ -62,16 +63,32 @@ def print_ubnt():
                             model = line.rsplit(None, 1)[-1]
                         elif "Version" in line:
                             version = line.rsplit(None, 1)[-1]
+                        elif "Hostname" in line:
+                            hostname = line.rsplit(None, 1)[-1]
                         elif "Status" in line or "Inform" in line:                        
                             status = line.rsplit(None, 2)[-2] + " " + line.rsplit(None, 1)[-1]
+                        
+                        if hostname == "":
+                            stdin, stdout, stderr = client.exec_command('uname -a')
+                            for line in stdout:
+                                hostname = line.split(None, 2)[1]
+                            
+                        
                 else:
                     stdin, stdout, stderr = client.exec_command('uname -a')
                     for line in stdout:
-                        model = line.split(None, 2)[1]
+                        hostname = line.split(None, 2)[1]
                     
                     stdin, stdout, stderr = client.exec_command('cat /etc/version')                   
                     for line in stdout:
                         version = line.strip('\n')
+                        
+                    stdin, stdout, stderr = client.exec_command('cat /etc/board.info')                   
+                    for line in stdout:
+                        if "board.name" in line:
+                            model = line.rsplit('=', 1)[-1].strip('\n')
+                            
+                
                     
                 client.close()
             except paramiko.AuthenticationException:
@@ -79,11 +96,11 @@ def print_ubnt():
             except:
                 status = "Error trying to connect!"
                                 
-            print(str(FORMAT % (ip, mac, model, version, status)))
+            print(str(FORMAT % (ip, mac, model, hostname, version, status)))
         
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-n", "--network", help="Make a ping sweep on subnet Eg. -n 10.0.0.0 (MUST be network ID!) ")
+parser.add_argument("-n", "--network", help="Make a ping sweep on subnet Eg. -n 10.0.0.0/24")
 args = parser.parse_args()
 
 if args.network:

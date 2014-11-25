@@ -41,13 +41,13 @@ Nmap done: 256 IP addresses (85 hosts up) scanned in 2.71 seconds
 
 Ubiquiti Unifi Devices
 
-IP               MAC                Model            Version      Status                                       
-10.0.0.179       24:a4:3c:b0:2b:18  UAP-Pro          3.2.1.2601   Connected (http://10.0.0.130:8080/inform)    
-10.0.0.215       24:a4:3c:94:4c:7d  UAP-Outdoor+     3.2.1.2601   Connected (http://10.0.0.130:8080/inform)
-10.0.0.214       04:14:d6:4e:c8:c2  UAP              3.2.1.2601   Connected (http://10.0.0.130:8080/inform) 
-10.0.0.15        04:18:d6:61:38:b9  NanoBeamM5       XW.v5.5.10                                                
-10.0.0.16        04:18:d6:4a:ca:ad  NanoBeamM5       XW.v5.5.10                                                
-10.0.0.213       04:18:d6:26:02:e1  mPort            2.1.1.1290   http://10.0.0.220:6080/inform
+IP               MAC                Model            Hostname           Version      Status     
+10.0.0.179       24:a4:3c:b0:2b:18  UAP-Pro          Office             3.2.1.2601   Connected (http://10.0.0.130:8080/inform)    
+10.0.0.215       24:a4:3c:94:4c:7d  UAP-Outdoor+     Yard               3.2.1.2601   Connected (http://10.0.0.130:8080/inform)
+10.0.0.214       04:14:d6:4e:c8:c2  UAP              Back-Office        3.2.1.2601   Connected (http://10.0.0.130:8080/inform) 
+10.0.0.15        04:18:d6:61:38:b9  NanoBeamM5       NB1                XW.v5.5.10                                                
+10.0.0.16        04:18:d6:4a:ca:ad  NanoBeamM5       NB2                XW.v5.5.10                                                
+10.0.0.213       04:18:d6:26:02:e1  mPort            mPortGarage        2.1.1.1290   http://10.0.0.220:6080/inform
 ```
 
 ### Licens
