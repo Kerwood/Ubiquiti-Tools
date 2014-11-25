@@ -27,28 +27,24 @@ The devices I have tested is the following.
 
 ### Example
 
-There are two ways you can run the script, with or without the ping sweep. Use the `-n` parameter to specify the network. It has to be the network ID. By default the script will ping a 24 bit subnet. If you need to change this, you will have to change it manually in the script.
+There are two ways you can run the script, with or without the ping sweep. Use the `-n` parameter to specify the network. It has to be the network ID and subnet. 
 
 Below is an exampel of the script in use.
 
 
 
 ```
-kerwood@Kerwood:~$ python DiscoverUbiquiti.py -n 10.0.0.0
+kerwood@Kerwood:~$ python DiscoverUbiquiti.py -n 10.0.0.0/24
 
 Ping sweep in progress...
 Nmap done: 256 IP addresses (85 hosts up) scanned in 2.71 seconds
 
-Ubiquiti Unifi APs
+Ubiquiti Unifi Devices
 
 IP               MAC                Model            Version      Status                                       
 10.0.0.179       24:a4:3c:b0:2b:18  UAP-Pro          3.2.1.2601   Connected (http://10.0.0.130:8080/inform)    
-10.0.0.215       24:a4:3c:94:4c:7d  UAP-Outdoor+     3.2.1.2601   Connected (http://10.0.0.130:8080/inform)    
-
-
-Other Ubiquiti Devices
-
-IP               MAC                Model            Version      Inform URL                                   
+10.0.0.215       24:a4:3c:94:4c:7d  UAP-Outdoor+     3.2.1.2601   Connected (http://10.0.0.130:8080/inform)
+10.0.0.214       04:14:d6:4e:c8:c2  UAP              3.2.1.2601   Connected (http://10.0.0.130:8080/inform) 
 10.0.0.15        04:18:d6:61:38:b9  NanoBeamM5       XW.v5.5.10                                                
 10.0.0.16        04:18:d6:4a:ca:ad  NanoBeamM5       XW.v5.5.10                                                
 10.0.0.213       04:18:d6:26:02:e1  mPort            2.1.1.1290   http://10.0.0.220:6080/inform

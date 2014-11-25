@@ -20,7 +20,7 @@ sshpass = "passw0rd"
 def ping_sweep(network):
     print
     print "Ping sweep in progress..."
-    nmap = subprocess.check_output("nmap -n -sP %s/24" % network, shell=True)
+    nmap = subprocess.check_output("nmap -n -sP %s" % network, shell=True)
     
     nsplit = []
     nsplit = nmap.split("\n")
@@ -31,7 +31,7 @@ def ping_sweep(network):
 def print_ubnt():   
     
     print
-    print "Ubiquiti Unifi APs\n"
+    print "Ubiquiti Unifi Devices\n"
     
     arp = subprocess.check_output("arp -a", shell=True)
     
