@@ -15,7 +15,7 @@ import argparse
 import re
 
 sshname = "admin"
-sshpass = "CM6Frkk2MWvc21He"
+sshpass = "passw0rd"
 
 def ping_sweep(network):
     print
