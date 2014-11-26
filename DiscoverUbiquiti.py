@@ -17,6 +17,12 @@ import re
 sshname = "admin"
 sshpass = "passw0rd"
 
+class bcolors:
+    OKGREEN = '\033[92m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    HEADER = '\033[93m'
+
 def ping_sweep(network):
     print
     print "Ping sweep in progress..."
@@ -31,7 +37,7 @@ def ping_sweep(network):
 def print_ubnt():   
     
     print
-    print "Ubiquiti Unifi Devices\n"
+    print "Ubiquiti Devices\n"
     
     arp = subprocess.check_output("arp -a", shell=True)
     
@@ -39,7 +45,9 @@ def print_ubnt():
     splitted = arp.split("\n")
     
     FORMAT = '%-16s %-18s %-16s %-18s %-12s %-45s'
-    print(FORMAT % ('IP', 'MAC', 'Model', 'Hostname', 'Version', 'Status'))
+    print FORMAT % ('IP', 'MAC', 'Model', 'Hostname', 'Version', 'Status')
+    
+    colorcount = 1
     
     for line in splitted:  
         if "24:a4:3c" in line or "04:18:d6" in line:           
@@ -92,13 +100,18 @@ def print_ubnt():
                     
                 client.close()
             except paramiko.AuthenticationException:
-                status = "Authentication failed!"
+                status = "%sAuthentication failed!%s" % (bcolors.FAIL, bcolors.ENDC)
             except:
-                status = "Error trying to connect!"
-                                
-            print(str(FORMAT % (ip, mac, model, hostname, version, status)))
+                status = "%sError trying to connect!%s" % (bcolors.FAIL, bcolors.ENDC)
+            
+            if colorcount % 2 == 0:
+                print FORMAT % (ip, mac, model, hostname, version, status)
+            else:
+                colorFormat = bcolors.HEADER + FORMAT + bcolors.ENDC
+                print colorFormat % (ip, mac, model, hostname, version, status)
+                
+            colorcount += 1
         
-
 parser = argparse.ArgumentParser()
 parser.add_argument("-n", "--network", help="Make a ping sweep on subnet Eg. -n 10.0.0.0/24")
 args = parser.parse_args()
