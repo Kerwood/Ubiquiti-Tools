@@ -11,14 +11,14 @@
 
 import paramiko
 
-informAddr = "http://***REMOVED***/inform"
+informAddr = "http://controller-ip:8080/inform"
 sshUser = "admin"
 sshPass = "passw0rd"
 
 clients = [
-    '10.0.0.207',
-    '10.0.0.214',
-    '10.0.0.215',
+    '10.0.0.10',
+    '10.0.0.11',
+    '10.0.0.12',
 ]
 
 class bcolors:
