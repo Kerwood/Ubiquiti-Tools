@@ -2,7 +2,7 @@ setInform.py
 =========================
 This is a Python script to set the inform address on multiple Ubiquiti devices automatically.
 
-Set the variables `informAddr`, `sshUser` and `sshPass` with with your inform address and SSH cridentials. The SSH cridentials is your Ubifi Controller login and Site password, which is found at "Settings -> Site" near the bottom, "Device Password". Put your curser in the password field to reveal it. Add your AP's IP addresses to the `clients` list and execute the script.
+Set the variables `informAddr`, `sshUser` and `sshPass` with with your inform address and SSH cridentials. The SSH cridentials is your Unifi Controller login and Site password, which is found at "Settings -> Site" near the bottom, "Device Password". Put your curser in the password field to reveal it. Add your AP's IP addresses to the `clients` list and execute the script.
 
 ### Requirements
  - Linux OS
