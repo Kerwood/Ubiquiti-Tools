@@ -1,4 +1,27 @@
-Ubiquiti Discovery Script
+setInform.py
+=========================
+This is a Python script to set the inform address on multiple Ubiquiti devices automatically.
+
+Set the variables `informAddr`, `sshUser` and `sshPass` with with your inform address and SSH cridentials. The SSH cridentials is your Ubifi Controller login and Site password, which is found at "Settings -> Site" near the bottom, "Device Password". Put your curser in the password field to reveal it. Add your AP's IP addresses to the `clients` list and execute the script.
+
+### Requirements
+ - Linux OS
+ - Python 2.7.*
+ - Paramiko (Python module - Easy install with pip)
+
+### Example
+
+```
+kerwood@Kerwood:~$ python setInform.py 
+
+Connecting to devices....
+
+ [+] Adoption request sent to http://10.0.0.130:8080/inform from 10.0.0.10 
+ [+] Adoption request sent to http://10.0.0.130:8080/inform from 10.0.0.11 
+ [+] Adoption request sent to http://10.0.0.130:8080/inform from 10.0.0.12
+ ```
+
+DiscoverUbiquiti.py
 =========================
 
 This is a Python script i wrote to discover Ubiquiti products. Since I've only been able to get my hands on a few devices, the device support list i rather short, see list below. 
