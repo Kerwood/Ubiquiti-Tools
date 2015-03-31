@@ -9,6 +9,14 @@ Set the variables `informAddr`, `sshUser` and `sshPass` with with your inform ad
  - Python 2.7.*
  - Paramiko (Python module - Easy install with pip)
 
+### Installation
+```
+sudo apt-get install python python-dev python-pip
+```
+```
+sudo pip install paramiko pycrypto ecdsa
+```
+
 ### Example
 
 ```
@@ -37,6 +45,14 @@ My experience is that the ping sweep works better, if the computer you are using
  - Python 2.7.*
  - Paramiko (Python module - Easy install with pip)
  - Nmap
+
+### Installation
+```
+sudo apt-get install python python-dev python-pip nmap
+```
+```
+sudo pip install paramiko pycrypto ecdsa
+```
 
 ### Supported devices
 Basicly the script should work with any device with a MAC starting with `24:a4:3c` or `04:18:d6`.
