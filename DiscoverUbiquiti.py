@@ -114,10 +114,19 @@ def print_ubnt():
         
 parser = argparse.ArgumentParser()
 parser.add_argument("-n", "--network", help="Make a ping sweep on subnet Eg. -n 10.0.0.0/24")
+parser.add_argument("-u", "--user", help="Specify the SSH username")
+parser.add_argument("-p", "--password", help="Specify the SSH paswword")
 args = parser.parse_args()
 
 if args.network:
     ping_sweep(args.network)
+
+if args.user:
+    sshname = args.user
+
+if args.password:
+    sshpass = args.password
+
 
 print_ubnt()
 print
