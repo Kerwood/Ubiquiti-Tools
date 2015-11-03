@@ -2,7 +2,7 @@ setInform.py
 =========================
 This is a Python script to set the inform address on multiple Ubiquiti devices automatically.
 
-Set the variables `informAddr`, `sshUser` and `sshPass` with with your inform address and SSH cridentials. The SSH cridentials is your Unifi Controller login and Site password, which is found at "Settings -> Site" near the bottom, "Device Password". Put your curser in the password field to reveal it. Add your AP's IP addresses to the `clients` list and execute the script.
+Set the variables, `sshUser` and `sshPass` with your SSH cridentials and fill the `informAddr` array with the IPs of devices you wish to configure. The SSH cridentials is your Unifi Controller login and Site password, which is found at "Settings -> Site" near the bottom, "Device Password". Put your curser in the password field to reveal it. Add your AP's IP addresses to the `clients` list and execute the script.
 
 ### Requirements
  - Linux OS (Haven't tested it on Windows, but I don't see why it wouldn't work)
@@ -32,11 +32,11 @@ Connecting to devices....
 DiscoverUbiquiti.py
 =========================
 
-This is a Python script i wrote to discover Ubiquiti products. Since I've only been able to get my hands on a few devices, the device support list i rather short, see list below. 
+This is a Python script I wrote to discover Ubiquiti products. Since I've only been able to get my hands on a few devices, the device support list i rather short, see list below. 
 
-What the script does, is fairly simple. It ping sweeps the LAN and checks the arp table for matching MAC addresses. It then trys to make a SSH connection to get the device model name, firmware version and controller inform address if any.
+What the script does, is fairly simple. It ping sweeps the LAN and checks the arp table for matching MAC addresses. It then try's to make a SSH connection to get the device model name, firmware version and controller inform address etc. etc.
 
-To make the SSH connection, you must specify the login credentials in the script. For AP's, it is the specifyed site login. You will find it in "Settings -> Site" at the bottom, "Device Password". Put your curser in the password field to reveal it. And for other non-controlled devices, like the NanBeam, it is login to the actual device.
+To make the SSH connection, you must specify the login credentials, either in the script or by arguments. For AP's, it is the specifyed site login. You will find it in "Settings -> Site" at the bottom, "Device Password". Put your curser in the password field to reveal it. And for other non-controlled devices, like the NanoBeam, it's the login to the actual device.
 
 My experience is that the ping sweep works better, if the computer you are using, is cabled to the network, instead of using WiFi.
 
@@ -66,14 +66,14 @@ The devices I have tested is the following.
 
 ### Example
 
-There are two ways you can run the script, with or without the ping sweep. Use the `-n` parameter to specify the network. It has to be the network ID and subnet. 
+There are 3 parameters that can be set. `-n` for the network/subnet to ping sweep, `-u` for the SSH user and `-p` for at SSH password. All are optional but you should at least run `-n` once to fill up the arp table. If you dont want to specify the SSH credentials as paramters you can set dem manually in the script as variables.  
 
 Below is an exampel of the script in use.
 
 
 
 ```
-kerwood@Kerwood:~$ python DiscoverUbiquiti.py -n 10.0.0.0/24
+kerwood@Kerwood:~$ python DiscoverUbiquiti.py -n 10.0.0.0/24 -u admin -p passw0rd
 
 Ping sweep in progress...
 Nmap done: 256 IP addresses (85 hosts up) scanned in 2.71 seconds
