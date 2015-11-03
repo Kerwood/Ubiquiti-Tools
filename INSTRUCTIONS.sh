@@ -18,8 +18,8 @@ echo "It then trys to make a SSH connection to the devices and pull hostname, mo
 echo "controller inform address and etc.."
 echo
 echo "${GREEN}Usage:${NORMAL}"
-echo "The --network argument is optional. But you need to ping sweep at least once to fill your arp table."
-echo "SSH username and password are also optional if you set the two varables in the script"
+echo "The --network parameter is optional. But you need to ping sweep at least once to fill your arp table."
+echo "SSH username and password are also optional, you can set the two varables in the script instead"
 echo
 echo "    ${BOLD}./DiscoverUbiquiti.py -n 10.0.0.0/24 -u sshUsername -p sshPass${NORMAL}"
 echo 
