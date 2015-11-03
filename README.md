@@ -55,9 +55,9 @@ sudo pip install paramiko pycrypto ecdsa
 ```
 
 ### Supported devices
-Basicly the script should work with any device with a MAC starting with `24:a4:3c` or `04:18:d6`.
+Basicly the script should work with any device with a MAC starting with `24:a4:3c`, `04:18:d6` or `dc:9f:db`.
 The devices I have tested is the following.
- - UAP
+ - UAP
  - UAP-LR
  - UAP-Pro
  - UAP-Outdoor+
