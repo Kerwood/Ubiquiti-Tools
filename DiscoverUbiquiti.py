@@ -50,7 +50,7 @@ def print_ubnt():
     colorcount = 1
     
     for line in splitted:  
-        if "24:a4:3c" in line or "04:18:d6" in line or "dc:9f:db" in line:           
+        if "24:a4:3c" in line or "04:18:d6" in line or "dc:9f:db" in line or "00:27:22" in line:           
             ip = re.search(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', line, re.I).group()
             mac = re.search(r'([0-9A-F]{2}[:-]){5}([0-9A-F]{2})', line, re.I).group()
             model = ""
