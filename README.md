@@ -59,10 +59,18 @@ Basicly the script should work with any device with a MAC starting with `24:a4:3
 The devices I have tested is the following.
  - UAP
  - UAP-LR
+ - UAP-AC-LR
  - UAP-Pro
+ - UAP‑AC‑PRO
  - UAP-Outdoor+
  - mPort
  - NanoBeamM5
+ - US-48-500W
+ - US-8-60W
+ - US-16-150W
+ - US-24-250W
+ - USG
+ - USG‑PRO‑4
 
 ### Example
 
